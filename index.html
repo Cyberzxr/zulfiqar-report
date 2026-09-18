@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZULFIQAR REPORT — Parvaz dar oj</title>
+<style>
+  :root {
+    --bg:#050505; --panel:#0a0a0a; --border:#1a1a1a;
+    --gold:#d4af37; --blood:#8b0000;
+    --green:#00ff88; --red:#ff4444; --cyan:#00e5ff;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body {
+    background:radial-gradient(circle at 50% 0%, #0a0a0a 0%, #000 70%);
+    color:#c9c9c9; font-family:'Tahoma',sans-serif;
+    min-height:100vh; padding:20px;
+  }
+  .header { text-align:center; padding:20px;
+    border-bottom:1px solid var(--gold); margin-bottom:25px; }
+  .logo { font-size:32px; color:var(--gold); font-weight:bold;
+    text-shadow:0 0 20px var(--blood),0 0 40px var(--blood);
+    letter-spacing:6px; }
+  .logo .blood { color:var(--blood); }
+  .sub { color:#666; font-size:11px; letter-spacing:4px;
+    margin-top:8px; text-transform:uppercase; }
+  .tagline { color:var(--blood); font-size:10px;
+    margin-top:5px; letter-spacing:3px; font-style:italic; }
+  .container { max-width:900px; margin:0 auto; }
+  .panel { background:linear-gradient(145deg,#0a0a0a,#0f0f0f);
+    border:1px solid var(--border); border-radius:8px;
+    margin-bottom:20px; overflow:hidden; }
+  .panel-head { padding:14px 20px;
+    background:linear-gradient(90deg,#1a0a0a,#0a0a0a);
+    color:var(--gold); font-size:13px; font-weight:bold;
+    letter-spacing:2px; text-transform:uppercase;
+    border-bottom:1px solid var(--border); }
+  .panel-head::before { content:'⚔ '; color:var(--blood); }
+  .panel-body { padding:20px; }
+  .channel-info { text-align:center; }
+  .channel-name { font-size:22px; color:var(--gold);
+    font-weight:bold; margin-bottom:10px; }
+  .channel-link { color:var(--cyan); text-decoration:none;
+    font-size:14px; direction:ltr; display:inline-block; }
+  .violations-list { list-style:none; }
+  .violations-list li { padding:10px 14px;
+    border-bottom:1px solid var(--border);
+    display:flex; justify-content:space-between;
+    align-items:center; }
+  .violations-list li:last-child { border-bottom:none; }
+  .violations-list li a { color:var(--cyan);
+    text-decoration:none; font-size:11px; }
+  .report-text { background:#000; border:1px solid #222;
+    border-radius:6px; padding:18px; margin:15px 0;
+    color:var(--green); font-size:13px; line-height:1.8;
+    direction:ltr; text-align:left; min-height:120px;
+    font-family:'Consolas',monospace; transition:opacity 0.3s; }
+  .btn { padding:14px 24px; border:1px solid var(--border);
+    color:#fff; cursor:pointer; border-radius:5px;
+    font-family:inherit; font-size:12px; font-weight:bold;
+    text-transform:uppercase; letter-spacing:2px;
+    transition:.2s; display:inline-block;
+    text-decoration:none; margin:5px; }
+  .btn:hover { filter:brightness(1.5); }
+  .btn.green { background:linear-gradient(145deg,#0f3d1a,#061a0a);
+    border-color:#1a5e1a; color:var(--green); }
+  .btn.cyan { background:linear-gradient(145deg,#0f3d3d,#061a1a);
+    border-color:#1a5e5e; color:var(--cyan); }
+  .btn.gold { background:linear-gradient(145deg,#3d3010,#1a1505);
+    border-color:#5e4a1a; color:var(--gold); }
+  .btn.red { background:linear-gradient(145deg,#4a0d0d,#1a0505);
+    border-color:#5e1a1a; color:#ff8888; }
+  .actions { text-align:center; margin-top:15px; }
+  .counter { text-align:center; margin-top:20px;
+    padding:20px; background:#0a0a0a;
+    border:1px solid var(--border); border-radius:6px; }
+  .counter .num { font-size:42px; color:var(--gold);
+    font-weight:bold; }
+  .counter .lbl { font-size:11px; color:#666;
+    margin-top:8px; letter-spacing:2px; text-transform:uppercase; }
+  .guide { color:#999; line-height:2; font-size:13px; }
+  .guide ol { padding-right:20px; }
+  .footer { text-align:center; color:#444; font-size:10px;
+    letter-spacing:3px; margin-top:40px; padding-top:20px;
+    border-top:1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">⚔ ZULFIQAR<span class="blood"> REPORT</span> ⚔</div>
+  <div class="sub">Crowdsourced Reporting Hub</div>
+  <div class="tagline">Forged in Fire — Wielded with Honor</div>
+</div>
+
+<div class="container">
+  <div class="panel">
+    <div class="panel-head">چنل متخلف</div>
+    <div class="panel-body channel-info">
+      <div class="channel-name">Parvaz dar oj</div>
+      <a href="https://t.me/https://t.me/Parvazdaroj" target="_blank" class="channel-link">t.me/https://t.me/Parvazdaroj</a>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">لیست تخلفات</div>
+    <div class="panel-body" style="padding:0;">
+      <ul class="violations-list" id="violations"></ul>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">متن گزارش</div>
+    <div class="panel-body">
+      <div class="report-text" id="report-text">Loading...</div>
+      <div class="actions">
+        <button class="btn cyan" onclick="copyText()" id="copy-btn">📋 کپی متن</button>
+        <button class="btn gold" onclick="showText()">🔄 متن جدید</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">ارسال گزارش</div>
+    <div class="panel-body">
+      <div class="actions">
+        <a class="btn green" id="mail-btn" href="#" onclick="sendEmail()">
+          📧 ارسال با ایمیل
+        </a>
+        <a class="btn red" href="#" onclick="sendTwitter()">
+          🐦 توییت
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">آمار</div>
+    <div class="panel-body">
+      <div class="counter">
+        <div class="num" id="report-count">0</div>
+        <div class="lbl">گزارش از این صفحه</div>
+      </div>
+      <div style="text-align:center; margin-top:10px;">
+        <button class="btn gold" onclick="incrementCount()">
+          ✅ من گزارش کردم
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">راهنما</div>
+    <div class="panel-body">
+      <div class="guide">
+        <ol>
+          <li>متن گزارش رو ببین</li>
+          <li>دکمهٔ <b>کپی متن</b> رو بزن</li>
+          <li>دکمهٔ <b>ارسال با ایمیل</b> رو بزن</li>
+          <li>ایمیل باز می‌شه → <b>Send</b> بزن</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  ⚔ ZULFIQAR REPORT — FORGED IN FIRE, WIELDED WITH HONOR ⚔
+</div>
+
+<script>
+const CHANNEL = "https://t.me/Parvazdaroj";
+const TITLE = "Parvaz dar oj";
+const VIOLATIONS = [{"text": "ایالات متحده، فروش احتمالی 48 فروند جنگنده F-35 به عربستان سعودی به ارزش 24.3 میلیارد دلار را تایید کرد.\n\nوزارت امور خارجه ایالات متحده، روز گذشته ، فروش احتمالی 48 فروند جنگنده چندمنظوره نسل پنجمF-35", "link": "https://t.me/https://t.me/Parvazdaroj/31881", "media": "photo", "keywords": ["فروش"]}, {"text": "وزارت امور خارجه آمریکا فروش 48 فروند جنگنده F-35A به نیرو هوایی سلطنتی عربستان سعودی به ارزش 24.3 میلیارد دلار(هر فروند 506 میلیون دلار!!!!) تایید کرد.\n\n@P_raetorio", "link": "https://t.me/https://t.me/Parvazdaroj/31875", "media": "photo", "keywords": ["فروش"]}, {"text": "ویدئویی پخش شده که می‌گویند آموزش و پرواز خلبان های ایرانی با سوخو ۳۵ است ...\nعرضم به خدمت که این سوپر فلانکر ها مربوط به تیم اکروجت شوالیه های روسی است که در یک نمایشگاه هوایی ( تاریخ نامشخص؟) مشغول ", "link": "https://t.me/https://t.me/Parvazdaroj/31874", "media": "video", "keywords": ["فیلم", "پخش", "کلیپ"]}, {"text": "ایالات متحده فروش مهمات به ارزش ۲.۸ میلیارد دلار به اسرائیل را تایید کرد! \n\nاین محموله شامل ۴۰ هزار MK-84 و BLU-117، و همچنین ۲۰ هزار بمب I-2000 خواهد بود. نیروی هوایی اسرائیل از این مهمات در نوار غزه", "link": "https://t.me/https://t.me/Parvazdaroj/31864", "media": "photo", "keywords": ["فروش"]}, {"text": "بریتانیا، هواپیماهای Typhoon مدل Tranche 1 را در جزایر فالکلند با مدل‌های جدیدتر Tranche 2 جایگزین خواهد کرد.\n\nدولت بریتانیا تأیید کرد که چهار فروند از جنگنده  Eurofighter Typhoon مدل Tranche 1، متعلق", "link": "https://t.me/https://t.me/Parvazdaroj/31804", "media": "photo", "keywords": ["پول"]}, {"text": "★ناتو برای جنگنده جی۲۰ نام فاگین ( Fagin ) را برگزیده. این نام برگرفته از رمان مشهور الیور توئیست نوشته چارلز دیکنز است.در این رمان، فاگین پیرمردی حیله‌گر و خسیس است که گروهی از کودکان یتیم و بی‌سرپرس", "link": "https://t.me/https://t.me/Parvazdaroj/31791", "media": "photo", "keywords": ["پول"]}, {"text": "نیروی هوایی هند، بمب هدایت‌شونده داخلی Khagantak-243 را آزمایش کرد.\n\nاین مهمات توسط شرکت تازه تاسیس JSR Dynamics Pvt Ltd، به همراه شرکت دولتی Bharat Electronics Ltd (BEL)، در چارچوب یک مدل همکاری بین ", "link": "https://t.me/https://t.me/Parvazdaroj/31695", "media": "photo", "keywords": ["خصوصی"]}, {"text": "ایالات متحده، فروش APKWS به ایتالیا را تایید کرد.\n\nوزارت امور خارجه ایالات متحده فروش احتمالی تا 5031 تیر راکت APKWS به ایتالیا را تایید کرد, ارزش این قرارداد، 364 میلیون دلار تخمین زده شده است. \n\nاین", "link": "https://t.me/https://t.me/Parvazdaroj/31676", "media": "photo", "keywords": ["فروش"]}, {"text": "آمریکا فروش بالگرد های بل به ارزش 800 میلیون دلار به عراق را تایید کرد.\n\nوزارت امور خارجه آمریکا، فروش احتمالی هلیکوپترهای \"بل\" 412EPX و \"بل\" 407M به عراق به ارزش 800 میلیون دلار را تایید کرد. \n\nشرکت ", "link": "https://t.me/https://t.me/Parvazdaroj/31610", "media": "photo", "keywords": ["فروش"]}, {"text": "◆ دوستان میگویند چرا درباره درگیری های چند ساعت اخیر روزه سکوت گرفتیم،جواب ساده است،بیهوده است .\nقبلا هم گفتم نباید کاسه داغ تر از آش بود،خود سید مجید موسوی هم میداند نبض موشک هایش وابسته به آسمان پای", "link": "https://t.me/https://t.me/Parvazdaroj/31605", "media": "photo", "keywords": ["لخت"]}, {"text": "**برای پوشش هرچه گسترده‌تر و حرفه‌ای‌تر انواع موضوعات جذاب در حوزه نظامی و هوانوردی ایران و جهان، مجموعه‌ای منحصربه‌فرد خلق کردیم.\n\nهدف ما؟\nآشنایی شما با این دنیای هیجان‌انگیز از طریق توضیحات ساده، دق", "link": "https://t.me/https://t.me/Parvazdaroj/31600", "media": "photo", "keywords": ["عکس"]}, {"text": "**شکار جنگنده پنهانکار J-20 توسط جنگنده J-10C با همکاری آواکس KJ-500 در تمرین نیروی هوایی چین**\n\nبدون برتری اطلاعاتی، دستیابی به پیروزی دشوار است. پیروزی مشترک، بدون آبدیده شدن در آموزش‌های مشترک به د", "link": "https://t.me/https://t.me/Parvazdaroj/31576", "media": "video", "keywords": ["پخش"]}, {"text": "◆ بعد از مدت ها یک ویدئو خوب ببینیم ،ارزش این کلیپ با اهنگ شنیدنی کعبه استاد معین چند برابر شده .\nاین را هم آپلود کردیم که بگوییم خوشبختانه اخبار خوبی در خصوص پراکنده شدن ناوگان اف ۱۴ در جنگ اخیر به گ", "link": "https://t.me/https://t.me/Parvazdaroj/31550", "media": "video", "keywords": ["کلیپ"]}, {"text": "فروش موشک‌های هوا به هوا مدل AIM-9X Sidewinder Block II به کره جنوبی \n\nوزارت امور خارجه ایالات متحده، فروش 103 موشک هوا به هوا مدل AIM-9X Sidewinder Block II، به همراه قطعات یدکی و تجهیزات جانبی، به ج", "link": "https://t.me/https://t.me/Parvazdaroj/31521", "media": "photo", "keywords": ["فروش"]}, {"text": "**__دیوانگان__**!\n\n**بغداد، ۱۹۸۱**\n\nپنج افسر نیروی هوایی پاکستان در مأموریتی به عراق اعزام شده بودند. سه نفر از آنها خلبانان جنگنده بودند: گروهبان سسیل چودری، سروان احتشام اکرم و سروان شهید کمال. سروا", "link": "https://t.me/https://t.me/Parvazdaroj/31519", "media": "photo", "keywords": ["عکس", "فیلم"]}, {"text": "فروش هلیکوپترهای چندمنظوره UH-60M Black Hawk به نروژ\n\nوزارت امور خارجه ایالات متحده، فروش 21 فروند هلیکوپتر چندمنظوره UH-60M Black Hawk به نروژ را تایید کرد. این سفارش شامل 46 موتور T700-GE-701D، 25 س", "link": "https://t.me/https://t.me/Parvazdaroj/31517", "media": "photo", "keywords": ["فروش"]}, {"text": "گاهی فکر میکنم کار از خرید جنگنده و آواکس گذشته .\nسروان فنی نیروی هوایی در شعبه خط پرواز را میبینید که میگوید برای تزریق سرم پول ندارم.\nبرم اسنپ کار کنم تا شب ،پولش جور شد میزنم .....\n\n@PARVAZDAROJ", "link": "https://t.me/https://t.me/Parvazdaroj/31510", "media": "video", "keywords": ["پول"]}, {"text": "شش ماه حبس به خاطر فیلمبرداری از پایگاه آمریکایی بمب‌افکن‌های B-2\n\nیک شهروند چینی به شش ماه حبس محکوم شد به دلیل فیلمبرداری از پایگاه نیروی هوایی آمریکا وایتمن (Whiteman AFB) در ایالت میسوری، که محل ا", "link": "https://t.me/https://t.me/Parvazdaroj/31469", "media": "photo", "keywords": ["عکس", "فیلم"]}, {"text": "ایالات متحده، فروش چهار فروند هواپیمای تانکر KC-46A به قطر را تایید کرد.\n\nوزارت امور خارجه ایالات متحده، فروش حداکثر چهار فروند هواپیمای تانکر KC-46A و تجهیزات مربوطه به ارزش تقریبی 4.5 میلیارد دلار ب", "link": "https://t.me/https://t.me/Parvazdaroj/31468", "media": "photo", "keywords": ["فروش"]}, {"text": "ژاپن قراردادهایی را برای ارتقاء جت‌های جنگنده F-15J به استاندارد JSI امضا کرد.\n\nوزارت دفاع ژاپن، چهار قرارداد را در چارچوب برنامه ارتقاء جت‌های جنگنده F-15J به پیکربندی JSI امضا کرد.\n\nاین توافق‌ها با ", "link": "https://t.me/https://t.me/Parvazdaroj/31444", "media": "photo", "keywords": ["فروش"]}];
+const REPORTS = ["This channel repeatedly posts non-consensual images of individuals without their permission. This violates Telegram's Terms of Service.", "The content shared here includes sexual material targeting individuals without consent. This is a clear violation.", "Non-consensual intimate images are being distributed on this channel. This is illegal.", "This channel violates Telegram's policy on privacy and consent by sharing private images.", "The channel promotes sexual exploitation and non-consensual content. Suspend immediately.", "Non-consensual sexual material and abuse. Request suspension.", "This channel distributes non-consensual sexual images. Violation of Telegram ToS.", "Sexual harassment and non-consensual content. Please take action.", "The channel posts degrading sexual content and harassment. Request permanent removal.", "Non-consensual content distribution. Violation of Telegram policy.", "This channel shares private sexual content without consent. Request removal.", "Repeated non-consensual sexual content. Please suspend.", "Sexual content targeting individuals without consent. Request suspension.", "Non-consensual sexual content and abuse. Please review.", "The channel shares non-consensual intimate images. Please remove.", "Sexual exploitation content is being shared. Request immediate action.", "This channel violates privacy and consent policies. Request action.", "Non-consensual images and abuse. Request suspension.", "The channel distributes non-consensual sexual content. Please act.", "Sexual harassment and privacy violations. Request immediate action.", "Non-consensual sexual content. Please remove.", "This channel targets individuals with sexual content. Request suspension.", "Non-consensual images and abuse. Violation of Telegram policy.", "The channel shares private sexual content without consent.", "Non-consensual sexual material. Please review and suspend.", "Repeated harassment, insults, and threats are posted on this channel. Violates anti-abuse policy.", "This channel is used for harassment and non-consensual content. Please suspend.", "Repeated violations of Telegram's ToS. Please review this channel.", "The channel violates consent and privacy policies. Request action.", "This channel violates Telegram's community guidelines on consent. Request suspension.", "Sexual harassment and non-consensual content. Please act.", "Repeated harassment and non-consensual content distribution. Please review.", "The channel is used for sexual harassment and non-consensual content. Request suspension.", "Sexual harassment and abuse. Request action.", "Non-consensual content and privacy violations. Please act.", "This channel targets individuals. Please suspend.", "Non-consensual content and harassment. Request action.", "Sexual content without consent. Please remove.", "Non-consensual images. Request immediate suspension.", "This channel is a clear violation of Telegram policies.", "Non-consensual sexual content. Request action.", "Sexual harassment and abuse on this channel.", "Non-consensual content distribution. Request suspension.", "This channel violates consent and privacy. Remove.", "Non-consensual sexual material. Review.", "This channel contains explicit threats of violence against individuals.", "Threats of harm and abuse are being posted on this channel.", "The channel promotes violence and threatens individuals.", "Repeated violent threats and harassment. Request immediate suspension.", "This channel violates Telegram's policy on violent content.", "The channel issues death threats to specific individuals.", "Violent content and threatening messages. Please review.", "This channel spreads violent threats. Request permanent removal.", "Threats to individuals are posted repeatedly on this channel.", "The channel is used for organized harassment and threats.", "This channel shares private images and personal information without authorization.", "Non-consensual images and personal information are being shared here. Request removal.", "The channel shares personal data without consent. This violates privacy policy.", "This channel violates privacy by sharing private images.", "Doxxing and personal data exposure. Request suspension.", "The channel exposes personal information without consent.", "This channel violates privacy policy by sharing personal data.", "Non-consensual sharing of personal information. Request review.", "The channel is exposing individuals' private data.", "This channel shares private images and personal data without consent.", "This channel promotes scams and fraudulent schemes targeting users.", "Fraudulent content and scam advertisements on this channel.", "This channel is used for financial scams and fraud.", "Scam advertisements targeting victims on this channel.", "The channel promotes illegal financial activities.", "This channel repeatedly violates Telegram's Terms of Service.", "Repeated violations of Telegram's community guidelines.", "The channel promotes illegal content. Request immediate suspension.", "This channel is used for illegal activities. Please review.", "Repeated violations of Telegram's policies. Please suspend.", "This channel violates Telegram's policy on acceptable use.", "Illegal content and violations on this channel. Review.", "The channel is used for illicit activities. Please act.", "Repeated policy violations. Please suspend this channel.", "This channel clearly violates Telegram's terms.", "This channel repeatedly posts non-consensual images of individuals without their permission. This violates Telegram's Terms of Service.", "The content shared here includes sexual material targeting individuals without consent. This is a clear violation.", "Non-consensual intimate images are being distributed on this channel. This is illegal.", "This channel violates Telegram's policy on privacy and consent by sharing private images.", "The channel promotes sexual exploitation and non-consensual content. Suspend immediately.", "This channel repeatedly posts non-consensual images of individuals without their permission. This violates Telegram's Terms of Service.", "The content shared here includes sexual material targeting individuals without consent. This is a clear violation.", "Non-consensual intimate images are being distributed on this channel. This is illegal.", "This channel violates Telegram's policy on privacy and consent by sharing private images.", "The channel promotes sexual exploitation and non-consensual content. Suspend immediately.", "This channel repeatedly posts non-consensual images of individuals without their permission. This violates Telegram's Terms of Service.", "The content shared here includes sexual material targeting individuals without consent. This is a clear violation.", "Non-consensual intimate images are being distributed on this channel. This is illegal.", "This channel violates Telegram's policy on privacy and consent by sharing private images.", "The channel promotes sexual exploitation and non-consensual content. Suspend immediately.", "This channel repeatedly posts non-consensual images of individuals without their permission. This violates Telegram's Terms of Service.", "The content shared here includes sexual material targeting individuals without consent. This is a clear violation.", "Non-consensual intimate images are being distributed on this channel. This is illegal.", "This channel violates Telegram's policy on privacy and consent by sharing private images.", "The channel promotes sexual exploitation and non-consensual content. Suspend immediately."];
+
+document.getElementById('violations').innerHTML = VIOLATIONS.map(v =>
+  `<li><span>${v.text}</span><a href="${v.link}" target="_blank">مشاهده</a></li>`
+).join('');
+
+let currentText = '';
+
+function showText() {
+  const el = document.getElementById('report-text');
+  el.style.opacity = '0';
+  setTimeout(() => {
+    currentText = REPORTS[Math.floor(Math.random() * REPORTS.length)];
+    el.textContent = currentText;
+    el.style.opacity = '1';
+  }, 150);
+}
+
+function copyText() {
+  navigator.clipboard.writeText(currentText).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = '✅ کپی شد!';
+    setTimeout(() => { btn.textContent = '📋 کپی متن'; }, 2000);
+  });
+}
+
+function sendEmail() {
+  const subject = encodeURIComponent(`Report: ${TITLE} (@${CHANNEL})`);
+  const body = encodeURIComponent(
+    currentText + `\n\nChannel: https://t.me/${CHANNEL}\n\nViolations:\n` +
+    VIOLATIONS.map(v => `- ${v.text}: ${v.link}`).join('\n')
+  );
+  window.location.href = `mailto:abuse@telegram.org,support@telegram.org?subject=${subject}&body=${body}`;
+}
+
+function sendTwitter() {
+  const text = encodeURIComponent(`@telegram باید چنل ${TITLE} (@${CHANNEL}) رو مسدود کنید. https://t.me/${CHANNEL}`);
+  window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+}
+
+function getCount() {
+  return parseInt(localStorage.getItem('zulfiqar_reports') || '0');
+}
+
+function incrementCount() {
+  const n = getCount() + 1;
+  localStorage.setItem('zulfiqar_reports', n);
+  document.getElementById('report-count').textContent = n;
+}
+
+showText();
+document.getElementById('report-count').textContent = getCount();
+setInterval(showText, 1000);
+</script>
+</body>
+</html>
